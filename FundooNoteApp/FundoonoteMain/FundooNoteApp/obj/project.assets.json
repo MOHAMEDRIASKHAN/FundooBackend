@@ -2749,11 +2749,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundooNoteApp\\FundooNoteApp.csproj",
+      "projectUniqueName": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundoonoteMain\\FundooNoteApp\\FundooNoteApp.csproj",
       "projectName": "FundooNoteApp",
-      "projectPath": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundooNoteApp\\FundooNoteApp.csproj",
+      "projectPath": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundoonoteMain\\FundooNoteApp\\FundooNoteApp.csproj",
       "packagesPath": "C:\\Users\\moham\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundooNoteApp\\obj\\",
+      "outputPath": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundoonoteMain\\FundooNoteApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\moham\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -2770,8 +2770,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\BusinessLayer\\BusinessLayer.csproj": {
-              "projectPath": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\BusinessLayer\\BusinessLayer.csproj"
+            "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundoonoteMain\\BusinessLayer\\BusinessLayer.csproj": {
+              "projectPath": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundoonoteMain\\BusinessLayer\\BusinessLayer.csproj"
             }
           }
         }

@@ -10,6 +10,7 @@ namespace RespositryLayer.Interface
 {
     public interface IUserRepo
     {
+        //irepo
         public Entity.UserTable RegUser(UserPostModel userDetail);
         public string LoginUser(string email, string password);
         public string ForgetPassword(string email);

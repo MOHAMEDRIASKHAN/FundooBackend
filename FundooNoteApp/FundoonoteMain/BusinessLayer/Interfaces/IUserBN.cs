@@ -11,6 +11,7 @@ namespace BusinessLayer.Interfaces
 {
     public interface IUserBN
     {
+        //iuserBn
         public UserTable RegUser(UserPostModel userDetail);
         public string LoginUser(string email, string password);
         public string ForgetPassword(string email);

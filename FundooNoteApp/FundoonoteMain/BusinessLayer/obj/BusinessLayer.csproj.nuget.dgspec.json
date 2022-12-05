@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\BusinessLayer\\BusinessLayer.csproj": {}
+    "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundoonoteMain\\BusinessLayer\\BusinessLayer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\BusinessLayer\\BusinessLayer.csproj": {
+    "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundoonoteMain\\BusinessLayer\\BusinessLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\BusinessLayer\\BusinessLayer.csproj",
+        "projectUniqueName": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundoonoteMain\\BusinessLayer\\BusinessLayer.csproj",
         "projectName": "BusinessLayer",
-        "projectPath": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\BusinessLayer\\BusinessLayer.csproj",
+        "projectPath": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundoonoteMain\\BusinessLayer\\BusinessLayer.csproj",
         "packagesPath": "C:\\Users\\moham\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\BusinessLayer\\obj\\",
+        "outputPath": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundoonoteMain\\BusinessLayer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\moham\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\RespositryLayer\\RespositryLayer.csproj": {
-                "projectPath": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\RespositryLayer\\RespositryLayer.csproj"
+              "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundoonoteMain\\RespositryLayer\\RespositryLayer.csproj": {
+                "projectPath": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundoonoteMain\\RespositryLayer\\RespositryLayer.csproj"
               }
             }
           }
@@ -63,14 +63,14 @@
         }
       }
     },
-    "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\CommonLayer\\CommonLayer.csproj": {
+    "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundoonoteMain\\CommonLayer\\CommonLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\CommonLayer\\CommonLayer.csproj",
+        "projectUniqueName": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundoonoteMain\\CommonLayer\\CommonLayer.csproj",
         "projectName": "CommonLayer",
-        "projectPath": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\CommonLayer\\CommonLayer.csproj",
+        "projectPath": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundoonoteMain\\CommonLayer\\CommonLayer.csproj",
         "packagesPath": "C:\\Users\\moham\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\CommonLayer\\obj\\",
+        "outputPath": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundoonoteMain\\CommonLayer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\moham\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -124,14 +124,14 @@
         }
       }
     },
-    "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\RespositryLayer\\RespositryLayer.csproj": {
+    "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundoonoteMain\\RespositryLayer\\RespositryLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\RespositryLayer\\RespositryLayer.csproj",
+        "projectUniqueName": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundoonoteMain\\RespositryLayer\\RespositryLayer.csproj",
         "projectName": "RespositryLayer",
-        "projectPath": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\RespositryLayer\\RespositryLayer.csproj",
+        "projectPath": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundoonoteMain\\RespositryLayer\\RespositryLayer.csproj",
         "packagesPath": "C:\\Users\\moham\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\RespositryLayer\\obj\\",
+        "outputPath": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundoonoteMain\\RespositryLayer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\moham\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -148,8 +148,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\CommonLayer\\CommonLayer.csproj": {
-                "projectPath": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\CommonLayer\\CommonLayer.csproj"
+              "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundoonoteMain\\CommonLayer\\CommonLayer.csproj": {
+                "projectPath": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundoonoteMain\\CommonLayer\\CommonLayer.csproj"
               }
             }
           }
