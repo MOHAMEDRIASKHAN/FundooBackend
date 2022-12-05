@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RespositryLayer.Services
 {
-    public class NoteRepo : INoteRepo
+    public class NoteRepo : INoteRepo1
     {
         private readonly FundooDBContext fundooDBContext;
 
@@ -19,11 +19,11 @@ namespace RespositryLayer.Services
             this.fundooDBContext = fundooDBContext;
         }
 
-        public NoteTable CreateNotes(NotesModel notesModel, long UserID)
+        public NoteTable CreateNotes(NotesModel notesModel, long userId)
         {
             try
             {
-                var validationUser = fundooDBContext.UserDetailTable.Where(a => a.UserID == UserID);
+                var validationUser = fundooDBContext.UserDetailTable.Where(a => a.UserID == userId);
                 if (validationUser != null)
                 {
                     NoteTable notestable = new NoteTable();
@@ -37,7 +37,7 @@ namespace RespositryLayer.Services
                     notestable.Trash = notesModel.Trash;
                     notestable.Created = notesModel.Created;
                     notestable.Modified = notesModel.Modified;
-                    notestable.UserID = UserID;
+                    notestable.UserID = userId;
                     fundooDBContext.NoteTable.Add(notestable);
 
                     fundooDBContext.SaveChanges();
@@ -53,7 +53,7 @@ namespace RespositryLayer.Services
             {
                 throw ex;
             }
-            
+
         }
 
         public IEnumerable<NoteTable> GetNotes(long userId)
@@ -61,7 +61,7 @@ namespace RespositryLayer.Services
             try
             {
                 var result = fundooDBContext.NoteTable.Where(a => a.UserID == userId);
-                if(result != null)
+                if (result != null)
                 {
                     return result;
                 }
@@ -81,38 +81,38 @@ namespace RespositryLayer.Services
             try
             {
                 var result = fundooDBContext.NoteTable.FirstOrDefault(e => e.NoteID == noteId && e.UserID == userId);
-                if( result != null )
-                    {
-                        fundooDBContext.NoteTable.Remove(result);
-                        fundooDBContext.SaveChanges();
-                        return true;
-                    }
+                if (result != null)
+                {
+                    fundooDBContext.NoteTable.Remove(result);
+                    fundooDBContext.SaveChanges();
+                    return true;
+                }
                 else
                 {
                     return false;
                 }
-                
-                
+
+
             }
             catch (Exception)
             {
                 throw;
             }
         }
-        public bool UpdateNotes(NotesModel notesModel,long userId, long noteID)
+        public bool UpdateNotes(long userId, long noteId, NotesModel notesModel)
         {
             try
             {
-                var result = fundooDBContext.NoteTable.FirstOrDefault(e => e.UserID == userId && e.NoteID == noteID);
-                if(result != null)
+                var result = fundooDBContext.NoteTable.FirstOrDefault(e => e.UserID == userId && e.NoteID == noteId);
+                if (result != null)
                 {
-                    if(notesModel.Title != null)
+                    if (notesModel.Title != null)
                     {
                         result.Title = notesModel.Title;
                     }
-                    if(notesModel.Body != null)
+                    if (notesModel.Body != null)
                     {
-                        result.Body =notesModel.Body;
+                        result.Body = notesModel.Body;
                     }
 
                     result.Modified = DateTime.Now;
@@ -124,17 +124,17 @@ namespace RespositryLayer.Services
                     return false;
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
                 throw;
             }
         }
-        public NoteTable color(long noteid, string color)
+        public NoteTable color(long noteID, string color)
         {
             try
             {
-                NoteTable noteTable = this.fundooDBContext.NoteTable.FirstOrDefault(x => x.NoteID == noteid);
-                if(noteTable.Color != null)
+                NoteTable noteTable = this.fundooDBContext.NoteTable.FirstOrDefault(x => x.NoteID == noteID);
+                if (noteTable.Color != null)
                 {
                     noteTable.Color = color;
                     this.fundooDBContext.SaveChanges();

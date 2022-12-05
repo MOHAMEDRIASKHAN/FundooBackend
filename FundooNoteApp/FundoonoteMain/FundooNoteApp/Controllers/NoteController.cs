@@ -44,15 +44,15 @@ namespace FundooNoteApp.Controllers
             }
         }
         [HttpGet("GetNotes")]
-        public ActionResult GetNotes(long userId)
+        public ActionResult GetNotes()
         {
             try
             {
-                long userID = Convert.ToInt32(User.Claims.FirstOrDefault(a => a.Type == "userID").Value);
-                IEnumerable<NoteTable> result = this.noteBN.GetNote(userId);
+                long userID = Convert.ToInt32(User.Claims.FirstOrDefault(a => a.Type == "UserID").Value);
+                IEnumerable<NoteTable> result = this.noteBN.GetNote(userID);
                 if (result != null)
                 {
-                    return this.Ok(new { success = true, message = "Note is Success" });
+                    return this.Ok(new { success = true, message = "Note is Success",Data = result });
                 }
                 else
                 {
@@ -65,12 +65,12 @@ namespace FundooNoteApp.Controllers
             }
         }
         [HttpDelete("DeleteNotes")]
-        public ActionResult DeleteNote(long userId, long noteId)
+        public ActionResult DeleteNote( long noteID)
         {
             try
             {
-                long userID = Convert.ToInt32(User.Claims.FirstOrDefault(a => a.Type == "userID").Value);
-                var result = this.noteBN.DeleteNote(userId, noteId);
+                long userID = Convert.ToInt32(User.Claims.FirstOrDefault(a => a.Type == "UserID").Value);
+                var result = this.noteBN.DeleteNote(userID, noteID);
                 if (result != null)
                 {
                     return this.Ok(new { success = true, message = "DeleteNotes successfully" });
@@ -85,37 +85,37 @@ namespace FundooNoteApp.Controllers
                 throw;
             }
         }
-        //[HttpPut("UpdateNotes")]
-        //public ActionResult UpdateNotes(NotesModel notesModel, long userId, long noteID)
-        //{
-        //    try
-        //    {
-        //        long userID = Convert.ToInt32(User.Claims.FirstOrDefault(a => a.Type == "userID").Value);
-        //        var result = this.noteBN.UpdateNotes(notesModel, userId, noteID);
-        //        if (result != null)
-        //        {
-        //            return this.Ok(new { success = true, message = "UpdateNotes Successfully" });
-        //        }
-        //        else
-        //        {
-        //            return this.BadRequest(new { success = false, message = "UpdateNotes Failed" });
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw;
-        //    }
-        //}
-        [HttpPost("Color")]
-        public ActionResult color(long noteid, string color)
+        [HttpPut("UpdateNotes")]
+        public ActionResult UpdateNotes( long noteID, NotesModel notesModel)
         {
             try
             {
-                long userID = Convert.ToInt32(User.Claims.FirstOrDefault(a => a.Type == "userID").Value);
-                var result = this.noteBN.color(noteid, color);
+                long userID = Convert.ToInt32(User.Claims.FirstOrDefault(a => a.Type == "UserID").Value);
+                var result = this.noteBN.UpdateNotes( userID, noteID, notesModel);
+                if (result != null)
+                {
+                    return this.Ok(new { success = true, message = "UpdateNotes Successfully" });
+                }
+                else
+                {
+                    return this.BadRequest(new { success = false, message = "UpdateNotes Failed" });
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        [HttpPost("Color")]
+        public ActionResult color(long noteID, string color)
+        {
+            try
+            {
+                long userID = Convert.ToInt32(User.Claims.FirstOrDefault(a => a.Type == "UserID").Value);
+                var result = this.noteBN.color( noteID, color);
                 if(result != null)
                 {
-                    return this.Ok(new { success = true, message = "Color option will work" });
+                    return this.Ok(new { success = true, message = "Color option will work",Data = result });
                 }
                 else
                 {

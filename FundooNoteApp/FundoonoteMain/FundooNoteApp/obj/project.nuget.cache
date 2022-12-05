@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "IUOFa7XQmM+3DGz9R9UWHaLxYRaMsztsEegiRV4UVyfZ8V34hWWX91Fw7o/RJZFrhqdgKiLy783bAllGvJ9Zzw==",
+  "dgSpecHash": "fyK94JBQzgGy0mChEINXg0/mauzvoJ2F6ckQsHI2P5Q9mOWBAr2kTd0deKIxZK89TL5w24B66oHNO4MzDc1Uig==",
   "success": true,
-  "projectFilePath": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundooNoteApp\\FundooNoteApp.csproj",
+  "projectFilePath": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundoonoteMain\\FundooNoteApp\\FundooNoteApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\moham\\.nuget\\packages\\experimental.system.messaging\\1.1.0\\experimental.system.messaging.1.1.0.nupkg.sha512",
     "C:\\Users\\moham\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

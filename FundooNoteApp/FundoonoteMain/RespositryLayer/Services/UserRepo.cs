@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 
 namespace RespositryLayer.Services
 {
+    //repo
     public class UserRepo : IUserRepo
     {
         FundooDBContext fundoo;
@@ -81,7 +82,7 @@ namespace RespositryLayer.Services
                     new Claim(ClaimTypes.Email,email),
                     new Claim("UserID",UserID.ToString())
                 }),
-                Expires = DateTime.UtcNow.AddYears(1),
+                Expires = DateTime.UtcNow.AddHours(6),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);

@@ -21,7 +21,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddTransient<IUserRepo, UserRepo>();
 builder.Services.AddTransient<IUserBN, UserBN>();
 builder.Services.AddTransient<INoteBN, NoteBN>();
-builder.Services.AddTransient<INoteRepo, NoteRepo>();
+builder.Services.AddTransient<INoteRepo1, NoteRepo>();
 
 builder.Services.AddSwaggerGen(c =>
 {

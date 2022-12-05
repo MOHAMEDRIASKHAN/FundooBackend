@@ -12,8 +12,8 @@ namespace BusinessLayer.Services
 {
     public class NoteBN : INoteBN
     {
-        INoteRepo noteRepo;
-        public NoteBN(INoteRepo noteRepo)
+        INoteRepo1 noteRepo;
+        public NoteBN(INoteRepo1 noteRepo)
         {
             this.noteRepo = noteRepo;
         }
@@ -51,17 +51,17 @@ namespace BusinessLayer.Services
                 throw;
             }
         }
-        //public bool UpdateNotes(NotesModel notesModel, long userId, long noteID)
-        //{
-        //    try
-        //    {
-        //        return noteRepo.UpdateNote(notesModel, userId, noteID);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw;
-        //    }
-        //}
+       public bool UpdateNotes( long userId, long noteId, NotesModel notesModel)
+        {
+            try
+            {
+                return noteRepo.UpdateNotes( userId, noteId, notesModel);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
 
         public NoteTable color(long noteid, string color)

@@ -44,11 +44,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\CommonLayer\\CommonLayer.csproj",
+      "projectUniqueName": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundoonoteMain\\CommonLayer\\CommonLayer.csproj",
       "projectName": "CommonLayer",
-      "projectPath": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\CommonLayer\\CommonLayer.csproj",
+      "projectPath": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundoonoteMain\\CommonLayer\\CommonLayer.csproj",
       "packagesPath": "C:\\Users\\moham\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\CommonLayer\\obj\\",
+      "outputPath": "C:\\Users\\moham\\source\\repos\\FundooNoteApp\\FundoonoteMain\\CommonLayer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\moham\\AppData\\Roaming\\NuGet\\NuGet.Config",
