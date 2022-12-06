@@ -20,8 +20,8 @@ builder.Services.AddDbContext<FundooDBContext>(options => options.UseSqlServer(b
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddTransient<IUserRepo, UserRepo>();
 builder.Services.AddTransient<IUserBN, UserBN>();
-builder.Services.AddTransient<INoteBN, NoteBN>();
 builder.Services.AddTransient<INoteRepo1, NoteRepo>();
+builder.Services.AddTransient<INoteBN, NoteBN>();
 
 builder.Services.AddSwaggerGen(c =>
 {

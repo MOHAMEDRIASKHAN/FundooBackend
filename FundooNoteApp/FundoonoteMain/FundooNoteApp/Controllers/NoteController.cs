@@ -127,6 +127,98 @@ namespace FundooNoteApp.Controllers
                 throw;
             }
         }
+        [HttpPut]
+        [Route("PinNotes")]
+
+        public ActionResult PinNotes(long noteID)
+        {
+            try
+            {
+                long userID = Convert.ToInt32(User.Claims.FirstOrDefault(a => a.Type == "UserID").Value);
+                var result = this.noteBN.PinNotes(noteID);
+                if(result != null)
+                {
+                    return this.Ok(new { success = true,  message =" PinNotes will work", Data = result });
+                }
+                else
+                {
+                    return this.BadRequest(new { success = false, message = "PinNotes does not Work" });
+                }
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+        }
+        [HttpPut]
+        [Route("Archieve")]
+        public ActionResult Archieve(long noteID)
+        {
+            try
+            {
+                long userID = Convert.ToInt32(User.Claims.FirstOrDefault(a => a.Type == "UserID").Value);
+                var result = this.noteBN.Archieve(noteID);
+                if (result != null)
+                {
+                    return this.Ok(new { success = true, message = "Archieve is worked", Data = result });
+
+                }
+                else
+                {
+                    return this.BadRequest(new { success = false,  message = "Archieve is not work"});
+                }
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPut]
+        [Route("Trash")]
+        public ActionResult Trash(long noteID)
+        {
+            try
+            {
+                long userID = Convert.ToInt32(User.Claims.FirstOrDefault(a => a.Type == "UserID").Value);
+                var result = this.noteBN.Trash(noteID);
+                if(result != null)
+                {
+                    return this.Ok(new { success = true, message = "Trash is worked",Data =result });
+                }
+                else
+                {
+                    return this.BadRequest(new { success = false, message = "Trash is not worked" });
+                }
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+        }
+        [HttpPut]
+        [Route("UploadImage")]
+
+        public ActionResult Image(long usedID,long noteID, IFormFile img)
+        {
+            try
+            {
+                long userID = Convert.ToInt32(User.Claims.FirstOrDefault(a => a.Type == "UserID").Value);
+                var result = this.noteBN.Image(usedID,noteID, img);
+                if (result != null)
+                {
+                    return this.Ok(new { success = true, message = "UploadImage Successfully", Data = result });
+                }
+                else
+                {
+                    return this.BadRequest(new { success = false, message = "UploadImage Failed" });
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 
 }

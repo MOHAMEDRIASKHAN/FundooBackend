@@ -25,7 +25,7 @@ namespace FundooNoteApp.Controllers
             this.userBN = userBN;
             this.fundoo = fundoo;
         }
-        [HttpPost("register")]
+        [HttpPost("register")]     //Name for the particular method in request url//
         public ActionResult RegisterUser(UserPostModel userDetail)
         {
             try

@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Interfaces;
 using CommonLayer.Model;
+using Microsoft.AspNetCore.Http;
 using RespositryLayer.Entity;
 using RespositryLayer.Interface;
 using System;
@@ -70,6 +71,50 @@ namespace BusinessLayer.Services
             {
                 return noteRepo.color(noteid, color);
                 
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public bool PinNotes(long noteID)
+        {
+            try
+            {
+                return noteRepo.PinNotes(noteID);
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+        }
+        public bool Archieve(long noteID)
+        {
+            try
+            {
+                return noteRepo.Archieve(noteID);
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+        }
+        public bool Trash(long noteID)
+        {
+            try
+            {
+                return noteRepo.Trash(noteID);
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+        }
+        public string Image(long userId, long noteID, IFormFile img)
+        {
+            try
+            {
+                return noteRepo.Image(noteID, userId, img);
             }
             catch (Exception)
             {

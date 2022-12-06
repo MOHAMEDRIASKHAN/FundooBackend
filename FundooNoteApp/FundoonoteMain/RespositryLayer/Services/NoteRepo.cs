@@ -1,4 +1,8 @@
-﻿using CommonLayer.Model;
+﻿using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+using CommonLayer.Model;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using RespositryLayer.Context;
 using RespositryLayer.Entity;
 using RespositryLayer.Interface;
@@ -13,11 +17,13 @@ namespace RespositryLayer.Services
     public class NoteRepo : INoteRepo1
     {
         private readonly FundooDBContext fundooDBContext;
-
-        public NoteRepo(FundooDBContext fundooDBContext)
+        private readonly IConfiguration configuration;
+        public NoteRepo( IConfiguration configuration, FundooDBContext fundooDBContext)
         {
             this.fundooDBContext = fundooDBContext;
+            this.configuration = configuration;
         }
+        
 
         public NoteTable CreateNotes(NotesModel notesModel, long userId)
         {
@@ -148,6 +154,113 @@ namespace RespositryLayer.Services
                 throw;
             }
         }
+        public bool PinNotes(long noteID)
+        {
+            try
+            {
+                NoteTable result = this.fundooDBContext.NoteTable.FirstOrDefault(x => x.NoteID==noteID);
+                if(result.PinNotes == true)
+                {
+                    result.PinNotes = false;
+                    this.fundooDBContext.SaveChanges();
+                    return false;
+                }
+                else
+                {
+                    result.PinNotes = true;
+                    this.fundooDBContext.SaveChanges();
+                    return false;
+                }
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+        }
 
+        public bool Archieve(long noteID)
+        {
+            try
+            {
+                NoteTable result = this.fundooDBContext.NoteTable.FirstOrDefault(x => x.NoteID ==noteID);
+                if(result.Archieve == true)
+                {
+                    result.Archieve = false;
+                    this.fundooDBContext.SaveChanges();
+                    return false;
+                }
+                else
+                {
+                    result.Archieve = true;
+                    this.fundooDBContext.SaveChanges();
+                    return true;
+                }
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+        }
+        public bool Trash(long noteID)
+        {
+            try
+            {
+                NoteTable result = this.fundooDBContext.NoteTable.FirstOrDefault(x => x.NoteID == noteID);
+                if (result.Trash == true)
+                {
+
+                    this.fundooDBContext.Remove(result);
+                    this.fundooDBContext.SaveChanges();
+                    return false;
+                   
+                }
+                else
+                {
+                    result.Trash= true;
+                    this.fundooDBContext.SaveChanges();
+                    return true;
+                }
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+        }
+        public string Image(long userId, long noteID, IFormFile img)
+        {
+            try
+            {
+                var result = this.fundooDBContext.NoteTable.FirstOrDefault(i => i.NoteID == noteID && i.UserID == userId);
+                if (result != null)
+                {
+                    Account account = new Account(
+                        this.configuration["CloundinarySettings:CloudName"],
+                        this.configuration["CloundinarySettings:ApiKey"],
+                        this.configuration["CloundinarySettings:ApiSecret"]);
+
+
+                   
+                    Cloudinary cloudinary = new Cloudinary(account);
+                    var uploadPara = new ImageUploadParams()
+                    {
+                        File = new FileDescription(img.FileName, img.OpenReadStream()),
+                    };
+
+                    var uploadResult = cloudinary.Upload(uploadPara);
+                    string imagePath = uploadResult.Url.ToString();
+                    result.Image = imagePath;
+                    fundooDBContext.SaveChanges();
+                    return "Image uploaded Successfully";
+                }
+                else
+                {
+                    return "Image not Uploaded";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

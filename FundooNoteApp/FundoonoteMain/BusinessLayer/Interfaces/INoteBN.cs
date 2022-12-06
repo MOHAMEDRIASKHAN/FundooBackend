@@ -1,4 +1,5 @@
 ﻿using CommonLayer.Model;
+using Microsoft.AspNetCore.Http;
 using RespositryLayer.Entity;
 
 namespace BusinessLayer.Interfaces
@@ -10,5 +11,9 @@ namespace BusinessLayer.Interfaces
         public bool DeleteNote(long userId, long noteId);
         public bool UpdateNotes( long userId, long noteId, NotesModel notesModel);
         public NoteTable color(long noteid, string color);
+        public bool PinNotes(long noteID);
+        public bool Archieve(long noteID);
+        public bool Trash(long noteID);
+        public string Image(long userId, long noteID, IFormFile img);
     }
 }

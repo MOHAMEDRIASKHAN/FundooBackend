@@ -1,4 +1,5 @@
 ﻿using CommonLayer.Model;
+using Microsoft.AspNetCore.Http;
 using RespositryLayer.Entity;
 
 namespace RespositryLayer.Interface
@@ -10,5 +11,9 @@ namespace RespositryLayer.Interface
         bool DeleteNote(long userId, long noteId);
         IEnumerable<NoteTable> GetNotes(long userId);
         bool UpdateNotes(long userId, long noteId, NotesModel notesModel);
+        public bool PinNotes(long noteID);
+        public bool Archieve(long noteID);
+        public bool Trash(long noteID);
+        public string Image(long userId, long noteID, IFormFile img);
     }
 }

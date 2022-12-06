@@ -152,3 +152,5 @@ C:\Users\moham\source\repos\FundooNoteApp\FundoonoteMain\FundooNoteApp\obj\Debug
 C:\Users\moham\source\repos\FundooNoteApp\FundoonoteMain\FundooNoteApp\obj\Debug\net6.0\FundooNoteApp.pdb
 C:\Users\moham\source\repos\FundooNoteApp\FundoonoteMain\FundooNoteApp\obj\Debug\net6.0\FundooNoteApp.genruntimeconfig.cache
 C:\Users\moham\source\repos\FundooNoteApp\FundoonoteMain\FundooNoteApp\obj\Debug\net6.0\ref\FundooNoteApp.dll
+C:\Users\moham\source\repos\FundooNoteApp\FundoonoteMain\FundooNoteApp\bin\Debug\net6.0\CloudinaryDotNet.dll
+C:\Users\moham\source\repos\FundooNoteApp\FundoonoteMain\FundooNoteApp\bin\Debug\net6.0\Newtonsoft.Json.dll
