@@ -29,7 +29,7 @@ namespace RespositryLayer.Services
                 labelTable.LabelName = label;
                 labelTable.NoteID = noteID;
                 labelTable.UserID = userID;
-                fundooDBContext.LabelTables.Add(labelTable);
+                fundooDBContext.LabelDetailTables.Add(labelTable);
                 int result = fundooDBContext.SaveChanges();
                 if (result > 0)
                 {
@@ -46,7 +46,7 @@ namespace RespositryLayer.Services
         {
             try
             {
-                var result = fundooDBContext.LabelTables.Where(e => e.NoteID == noteID && e.UserID == userID).ToList();
+                var result = fundooDBContext.LabelDetailTables.Where(e => e.NoteID == noteID && e.UserID == userID).ToList();
                 return result;
             }
             catch (Exception)
@@ -58,7 +58,7 @@ namespace RespositryLayer.Services
         {
             try
             {
-                var result = fundooDBContext.LabelTables.FirstOrDefault(x => x.UserID == userID && x.LabelID == labelID);
+                var result = fundooDBContext.LabelDetailTables.FirstOrDefault(x => x.UserID == userID && x.LabelID == labelID);
                 if (result != null)
                 {
                     fundooDBContext.Remove(result);
@@ -77,7 +77,7 @@ namespace RespositryLayer.Services
         {
             try
             {
-                var result = fundooDBContext.LabelTables.FirstOrDefault(x => x.UserID == userID && x.LabelName == oldLabelName);
+                var result = fundooDBContext.LabelDetailTables.FirstOrDefault(x => x.UserID == userID && x.LabelName == oldLabelName);
                 if (result != null)
                 {
                     result.LabelName = newLabelName;

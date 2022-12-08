@@ -14,10 +14,10 @@ namespace RespositryLayer.Context
         {
 
         }
-        public DbSet<UserTable> UserTables { get; set; }
-        public DbSet<NoteTable> NoteDetailTable { get; set; }
+        public DbSet<UserTable> UserDetailTables { get; set; }
+        public DbSet<NoteTable> NoteDetailTables { get; set; }
 
-        public DbSet<LabelTable> LabelTables{ get; set; }
-        public DbSet<CollabTable> CollabDetailTable { get; set; }
+        public DbSet<LabelTable> LabelDetailTables{ get; set; }
+        public DbSet<CollabTable> CollabDetailTables { get; set; }
     }
 }

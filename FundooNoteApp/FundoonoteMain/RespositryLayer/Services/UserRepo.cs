@@ -41,7 +41,7 @@ namespace RespositryLayer.Services
                 usertable.Password = userDetail.Password;
 
 
-                fundoo.UserTables.Add(usertable);
+                fundoo.UserDetailTables.Add(usertable);
                 fundoo.SaveChanges();
                 return usertable;
             }
@@ -55,7 +55,7 @@ namespace RespositryLayer.Services
         {
             try
             {
-                var result = fundoo.UserTables.Where(u => u.EmailID == email && u.Password == password).FirstOrDefault();
+                var result = fundoo.UserDetailTables.Where(u => u.EmailID == email && u.Password == password).FirstOrDefault();
                 if(result != null)
                 {
                     
@@ -136,7 +136,7 @@ namespace RespositryLayer.Services
         {
             try
             {
-                var CheckEmail = fundoo.UserTables.FirstOrDefault(e => e.EmailID == email);
+                var CheckEmail = fundoo.UserDetailTables.FirstOrDefault(e => e.EmailID == email);
                 if (CheckEmail != null)
                 {
                     var Token =  GetJWTToken(CheckEmail.EmailID, CheckEmail.UserID);
@@ -162,7 +162,7 @@ namespace RespositryLayer.Services
             {
                 if(valid.Password.Equals(valid.ConfirmPassword))
                 {
-                    var user = fundoo.UserTables.Where(x => x.EmailID == email).FirstOrDefault();
+                    var user = fundoo.UserDetailTables.Where(x => x.EmailID == email).FirstOrDefault();
                     user.Password = EncryptPassword(valid.ConfirmPassword);
                     fundoo.SaveChanges();
                     return true;

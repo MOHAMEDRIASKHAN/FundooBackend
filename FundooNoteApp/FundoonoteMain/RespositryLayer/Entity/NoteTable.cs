@@ -24,8 +24,8 @@ namespace RespositryLayer.Entity
         public DateTime Created { get; set; }
         public DateTime Modified { get; set; }
 
-        [ForeignKey("UserTables")]
+        [ForeignKey("UserDetailTables")]
         public long UserID { get; set; }
-        public virtual UserTable? UserTables { get; set; }
+        public virtual UserTable? UserDetailTables { get; set; }
     }
 }

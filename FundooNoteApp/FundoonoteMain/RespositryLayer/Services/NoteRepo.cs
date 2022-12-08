@@ -29,7 +29,7 @@ namespace RespositryLayer.Services
         {
             try
             {
-                var validationUser = fundooDBContext.UserTables.Where(a => a.UserID == userId);
+                var validationUser = fundooDBContext.UserDetailTables.Where(a => a.UserID == userId);
                 if (validationUser != null)
                 {
                     NoteTable notestable = new NoteTable();
@@ -44,7 +44,7 @@ namespace RespositryLayer.Services
                     notestable.Created = notesModel.Created;
                     notestable.Modified = notesModel.Modified;
                     notestable.UserID = userId;
-                    fundooDBContext.NoteDetailTable.Add(notestable);
+                    fundooDBContext.NoteDetailTables.Add(notestable);
 
                     fundooDBContext.SaveChanges();
                     return notestable;
@@ -66,7 +66,7 @@ namespace RespositryLayer.Services
         {
             try
             {
-                var result = fundooDBContext.NoteDetailTable.Where(a => a.UserID == userId);
+                var result = fundooDBContext.NoteDetailTables.Where(a => a.UserID == userId);
                 if (result != null)
                 {
                     return result;
@@ -86,10 +86,10 @@ namespace RespositryLayer.Services
         {
             try
             {
-                var result = fundooDBContext.NoteDetailTable.FirstOrDefault(e => e.NoteID == noteId && e.UserID == userId);
+                var result = fundooDBContext.NoteDetailTables.FirstOrDefault(e => e.NoteID == noteId && e.UserID == userId);
                 if (result != null)
                 {
-                    fundooDBContext.NoteDetailTable.Remove(result);
+                    fundooDBContext.NoteDetailTables.Remove(result);
                     fundooDBContext.SaveChanges();
                     return true;
                 }
@@ -109,7 +109,7 @@ namespace RespositryLayer.Services
         {
             try
             {
-                var result = fundooDBContext.NoteDetailTable.FirstOrDefault(e => e.UserID == userId && e.NoteID == noteId);
+                var result = fundooDBContext.NoteDetailTables.FirstOrDefault(e => e.UserID == userId && e.NoteID == noteId);
                 if (result != null)
                 {
                     if (notesModel.Title != null)
@@ -139,7 +139,7 @@ namespace RespositryLayer.Services
         {
             try
             {
-                NoteTable noteTable = this.fundooDBContext.NoteDetailTable.FirstOrDefault(x => x.NoteID == noteID);
+                NoteTable noteTable = this.fundooDBContext.NoteDetailTables.FirstOrDefault(x => x.NoteID == noteID);
                 if (noteTable.Color != null)
                 {
                     noteTable.Color = color;
@@ -158,7 +158,7 @@ namespace RespositryLayer.Services
         {
             try
             {
-                NoteTable result = this.fundooDBContext.NoteDetailTable.FirstOrDefault(x => x.NoteID==noteID);
+                NoteTable result = this.fundooDBContext.NoteDetailTables.FirstOrDefault(x => x.NoteID==noteID);
                 if(result.PinNotes == true)
                 {
                     result.PinNotes = false;
@@ -182,7 +182,7 @@ namespace RespositryLayer.Services
         {
             try
             {
-                NoteTable result = this.fundooDBContext.NoteDetailTable.FirstOrDefault(x => x.NoteID ==noteID);
+                NoteTable result = this.fundooDBContext.NoteDetailTables.FirstOrDefault(x => x.NoteID ==noteID);
                 if(result.Archieve == true)
                 {
                     result.Archieve = false;
@@ -205,7 +205,7 @@ namespace RespositryLayer.Services
         {
             try
             {
-                var result = fundooDBContext.NoteDetailTable.Where(r => r.UserID == UserId && r.Archieve == true);
+                var result = fundooDBContext.NoteDetailTables.Where(r => r.UserID == UserId && r.Archieve == true);
                 if (result != null)
                 {
                     
@@ -223,7 +223,7 @@ namespace RespositryLayer.Services
         {
             try
             {
-                NoteTable result = this.fundooDBContext.NoteDetailTable.FirstOrDefault(x => x.NoteID == noteID);
+                NoteTable result = this.fundooDBContext.NoteDetailTables.FirstOrDefault(x => x.NoteID == noteID);
                 if (result.Trash == true)
                 {
 
@@ -248,7 +248,7 @@ namespace RespositryLayer.Services
         {
             try
             {
-                var result = fundooDBContext.NoteDetailTable.Where(r => r.UserID == usedID && r.Trash == true);
+                var result = fundooDBContext.NoteDetailTables.Where(r => r.UserID == usedID && r.Trash == true);
                 if (result != null)
                 {
 
@@ -270,10 +270,10 @@ namespace RespositryLayer.Services
         {
             try
             {
-                NoteTable DeleteForever = this.fundooDBContext.NoteDetailTable.FirstOrDefault(e => e.NoteID == noteID);
+                NoteTable DeleteForever = this.fundooDBContext.NoteDetailTables.FirstOrDefault(e => e.NoteID == noteID);
                 if(DeleteForever.Trash == true)
                 {
-                    fundooDBContext.NoteDetailTable.Remove(DeleteForever);
+                    fundooDBContext.NoteDetailTables.Remove(DeleteForever);
                     this.fundooDBContext.SaveChanges();
                     return false;
                 }
@@ -290,7 +290,7 @@ namespace RespositryLayer.Services
         {
             try
             {
-                var result = this.fundooDBContext.NoteDetailTable.FirstOrDefault(i => i.NoteID == noteID && i.UserID == userId);
+                var result = this.fundooDBContext.NoteDetailTables.FirstOrDefault(i => i.NoteID == noteID && i.UserID == userId);
                 if (result != null)
                 {
                     Account account = new Account(
@@ -326,7 +326,7 @@ namespace RespositryLayer.Services
         {
             try
             {
-                NoteTable noteTable = this.fundooDBContext.NoteDetailTable.FirstOrDefault(x => x.NoteID == noteID);
+                NoteTable noteTable = this.fundooDBContext.NoteDetailTables.FirstOrDefault(x => x.NoteID == noteID);
                 if (noteTable.Reminder != null)
                 {
                     noteTable.Reminder = Reminder;

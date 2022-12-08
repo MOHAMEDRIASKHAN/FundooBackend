@@ -17,11 +17,11 @@ namespace RespositryLayer.Entity
         public DateTime? Modifiedat { get; set; }
 
 
-        [ForeignKey("UserTables")]
-        public long UserId { get; set; }
-        [ForeignKey("NoteDetailTable")]
+        [ForeignKey("UserDetailTables")]
+        public long UserID { get; set; }
+        [ForeignKey("NoteDetailTables")]
         public long NoteID { get; set; }
-        public virtual UserTable? UserTables { get; set; }
-        public virtual NoteTable? NoteDetailTable { get; set; }
+        public virtual UserTable? UserDetailTables { get; set; }
+        public virtual NoteTable? NoteDetailTables { get; set; }
     }
 }

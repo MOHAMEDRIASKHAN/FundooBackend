@@ -12,8 +12,8 @@ using RespositryLayer.Context;
 namespace RespositryLayer.Migrations
 {
     [DbContext(typeof(FundooDBContext))]
-    [Migration("20221208035334_fundoo")]
-    partial class fundoo
+    [Migration("20221208163921_fundoonoteee")]
+    partial class fundoonoteee
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,16 +41,16 @@ namespace RespositryLayer.Migrations
                     b.Property<long>("NoteID")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("UserId")
+                    b.Property<long>("UserID")
                         .HasColumnType("bigint");
 
                     b.HasKey("CollabID");
 
                     b.HasIndex("NoteID");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserID");
 
-                    b.ToTable("CollabDetailTable");
+                    b.ToTable("CollabDetailTables");
                 });
 
             modelBuilder.Entity("RespositryLayer.Entity.LabelTable", b =>
@@ -76,7 +76,7 @@ namespace RespositryLayer.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("LabelTables");
+                    b.ToTable("LabelDetailTables");
                 });
 
             modelBuilder.Entity("RespositryLayer.Entity.NoteTable", b =>
@@ -128,7 +128,7 @@ namespace RespositryLayer.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("NoteDetailTable");
+                    b.ToTable("NoteDetailTables");
                 });
 
             modelBuilder.Entity("RespositryLayer.Entity.UserTable", b =>
@@ -157,56 +157,56 @@ namespace RespositryLayer.Migrations
 
                     b.HasKey("UserID");
 
-                    b.ToTable("UserTables");
+                    b.ToTable("UserDetailTables");
                 });
 
             modelBuilder.Entity("RespositryLayer.Entity.CollabTable", b =>
                 {
-                    b.HasOne("RespositryLayer.Entity.NoteTable", "NoteDetailTable")
+                    b.HasOne("RespositryLayer.Entity.NoteTable", "NoteDetailTables")
                         .WithMany()
                         .HasForeignKey("NoteID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RespositryLayer.Entity.UserTable", "UserTables")
+                    b.HasOne("RespositryLayer.Entity.UserTable", "UserDetailTables")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("NoteDetailTable");
+                    b.Navigation("NoteDetailTables");
 
-                    b.Navigation("UserTables");
+                    b.Navigation("UserDetailTables");
                 });
 
             modelBuilder.Entity("RespositryLayer.Entity.LabelTable", b =>
                 {
-                    b.HasOne("RespositryLayer.Entity.NoteTable", "NoteDetailTable")
+                    b.HasOne("RespositryLayer.Entity.NoteTable", "NoteDetailTables")
                         .WithMany()
                         .HasForeignKey("NoteID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RespositryLayer.Entity.UserTable", "UserTables")
+                    b.HasOne("RespositryLayer.Entity.UserTable", "UserDetailTables")
                         .WithMany()
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("NoteDetailTable");
+                    b.Navigation("NoteDetailTables");
 
-                    b.Navigation("UserTables");
+                    b.Navigation("UserDetailTables");
                 });
 
             modelBuilder.Entity("RespositryLayer.Entity.NoteTable", b =>
                 {
-                    b.HasOne("RespositryLayer.Entity.UserTable", "UserTables")
+                    b.HasOne("RespositryLayer.Entity.UserTable", "UserDetailTables")
                         .WithMany()
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("UserTables");
+                    b.Navigation("UserDetailTables");
                 });
 #pragma warning restore 612, 618
         }

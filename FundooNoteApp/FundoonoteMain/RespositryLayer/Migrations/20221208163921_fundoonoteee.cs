@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RespositryLayer.Migrations
 {
-    public partial class fundoo : Migration
+    public partial class fundoonoteee : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "UserTables",
+                name: "UserDetailTables",
                 columns: table => new
                 {
                     UserID = table.Column<long>(type: "bigint", nullable: false)
@@ -22,11 +22,11 @@ namespace RespositryLayer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserTables", x => x.UserID);
+                    table.PrimaryKey("PK_UserDetailTables", x => x.UserID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "NoteDetailTable",
+                name: "NoteDetailTables",
                 columns: table => new
                 {
                     NoteID = table.Column<long>(type: "bigint", nullable: false)
@@ -45,45 +45,45 @@ namespace RespositryLayer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_NoteDetailTable", x => x.NoteID);
+                    table.PrimaryKey("PK_NoteDetailTables", x => x.NoteID);
                     table.ForeignKey(
-                        name: "FK_NoteDetailTable_UserTables_UserID",
+                        name: "FK_NoteDetailTables_UserDetailTables_UserID",
                         column: x => x.UserID,
-                        principalTable: "UserTables",
+                        principalTable: "UserDetailTables",
                         principalColumn: "UserID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "CollabDetailTable",
+                name: "CollabDetailTables",
                 columns: table => new
                 {
                     CollabID = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CollabEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Modifiedat = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UserId = table.Column<long>(type: "bigint", nullable: false),
+                    UserID = table.Column<long>(type: "bigint", nullable: false),
                     NoteID = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CollabDetailTable", x => x.CollabID);
+                    table.PrimaryKey("PK_CollabDetailTables", x => x.CollabID);
                     table.ForeignKey(
-                        name: "FK_CollabDetailTable_NoteDetailTable_NoteID",
+                        name: "FK_CollabDetailTables_NoteDetailTables_NoteID",
                         column: x => x.NoteID,
-                        principalTable: "NoteDetailTable",
+                        principalTable: "NoteDetailTables",
                         principalColumn: "NoteID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_CollabDetailTable_UserTables_UserId",
-                        column: x => x.UserId,
-                        principalTable: "UserTables",
+                        name: "FK_CollabDetailTables_UserDetailTables_UserID",
+                        column: x => x.UserID,
+                        principalTable: "UserDetailTables",
                         principalColumn: "UserID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "LabelTables",
+                name: "LabelDetailTables",
                 columns: table => new
                 {
                     LabelID = table.Column<long>(type: "bigint", nullable: false)
@@ -94,60 +94,60 @@ namespace RespositryLayer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LabelTables", x => x.LabelID);
+                    table.PrimaryKey("PK_LabelDetailTables", x => x.LabelID);
                     table.ForeignKey(
-                        name: "FK_LabelTables_NoteDetailTable_NoteID",
+                        name: "FK_LabelDetailTables_NoteDetailTables_NoteID",
                         column: x => x.NoteID,
-                        principalTable: "NoteDetailTable",
+                        principalTable: "NoteDetailTables",
                         principalColumn: "NoteID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_LabelTables_UserTables_UserID",
+                        name: "FK_LabelDetailTables_UserDetailTables_UserID",
                         column: x => x.UserID,
-                        principalTable: "UserTables",
+                        principalTable: "UserDetailTables",
                         principalColumn: "UserID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CollabDetailTable_NoteID",
-                table: "CollabDetailTable",
+                name: "IX_CollabDetailTables_NoteID",
+                table: "CollabDetailTables",
                 column: "NoteID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CollabDetailTable_UserId",
-                table: "CollabDetailTable",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LabelTables_NoteID",
-                table: "LabelTables",
-                column: "NoteID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LabelTables_UserID",
-                table: "LabelTables",
+                name: "IX_CollabDetailTables_UserID",
+                table: "CollabDetailTables",
                 column: "UserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_NoteDetailTable_UserID",
-                table: "NoteDetailTable",
+                name: "IX_LabelDetailTables_NoteID",
+                table: "LabelDetailTables",
+                column: "NoteID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_LabelDetailTables_UserID",
+                table: "LabelDetailTables",
+                column: "UserID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NoteDetailTables_UserID",
+                table: "NoteDetailTables",
                 column: "UserID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CollabDetailTable");
+                name: "CollabDetailTables");
 
             migrationBuilder.DropTable(
-                name: "LabelTables");
+                name: "LabelDetailTables");
 
             migrationBuilder.DropTable(
-                name: "NoteDetailTable");
+                name: "NoteDetailTables");
 
             migrationBuilder.DropTable(
-                name: "UserTables");
+                name: "UserDetailTables");
         }
     }
 }

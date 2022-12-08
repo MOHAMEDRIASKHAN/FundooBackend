@@ -16,13 +16,13 @@ namespace RespositryLayer.Entity
         public long LabelID { get; set; }
         public string? LabelName { get; set; }
 
-        [ForeignKey("UserTables")]
+        [ForeignKey("UserDetailTables")]
         public long UserID { get; set; }
 
-        [ForeignKey("NoteDetailTable")]
+        [ForeignKey("NoteDetailTables")]
         public long NoteID { get; set; }
         
-        public virtual UserTable? UserTables { get; set; }
-        public virtual NoteTable? NoteDetailTable { get; set; }
+        public virtual UserTable? UserDetailTables { get; set; }
+        public virtual NoteTable? NoteDetailTables { get; set; }
     }
 }

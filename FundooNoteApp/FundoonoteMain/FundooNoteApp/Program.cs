@@ -24,6 +24,8 @@ builder.Services.AddTransient<INoteRepo1, NoteRepo>();
 builder.Services.AddTransient<INoteBN, NoteBN>();
 builder.Services.AddTransient<ILabelBN, LabelBN>();
 builder.Services.AddTransient<ILabelRepo, LabelRepo>();
+builder.Services.AddTransient<ICollabRepo, CollabRepo>();
+builder.Services.AddTransient<ICollabBN, CollabBN>();
 
 builder.Services.AddSwaggerGen(c =>
 {
