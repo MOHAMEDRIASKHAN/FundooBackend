@@ -22,6 +22,61 @@ namespace RespositryLayer.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("RespositryLayer.Entity.CollabTable", b =>
+                {
+                    b.Property<long>("CollabID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("CollabID"), 1L, 1);
+
+                    b.Property<string>("CollabEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Modifiedat")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("NoteID")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("CollabID");
+
+                    b.HasIndex("NoteID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CollabDetailTable");
+                });
+
+            modelBuilder.Entity("RespositryLayer.Entity.LabelTable", b =>
+                {
+                    b.Property<long>("LabelID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("LabelID"), 1L, 1);
+
+                    b.Property<string>("LabelName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("NoteID")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("UserID")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("LabelID");
+
+                    b.HasIndex("NoteID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("LabelTables");
+                });
+
             modelBuilder.Entity("RespositryLayer.Entity.NoteTable", b =>
                 {
                     b.Property<long>("NoteID")
@@ -71,7 +126,7 @@ namespace RespositryLayer.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("NoteTable");
+                    b.ToTable("NoteDetailTable");
                 });
 
             modelBuilder.Entity("RespositryLayer.Entity.UserTable", b =>
@@ -100,18 +155,56 @@ namespace RespositryLayer.Migrations
 
                     b.HasKey("UserID");
 
-                    b.ToTable("UserDetailTable");
+                    b.ToTable("UserTables");
                 });
 
-            modelBuilder.Entity("RespositryLayer.Entity.NoteTable", b =>
+            modelBuilder.Entity("RespositryLayer.Entity.CollabTable", b =>
                 {
-                    b.HasOne("RespositryLayer.Entity.UserTable", "UserDetailTable")
+                    b.HasOne("RespositryLayer.Entity.NoteTable", "NoteDetailTable")
+                        .WithMany()
+                        .HasForeignKey("NoteID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RespositryLayer.Entity.UserTable", "UserTables")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("NoteDetailTable");
+
+                    b.Navigation("UserTables");
+                });
+
+            modelBuilder.Entity("RespositryLayer.Entity.LabelTable", b =>
+                {
+                    b.HasOne("RespositryLayer.Entity.NoteTable", "NoteDetailTable")
+                        .WithMany()
+                        .HasForeignKey("NoteID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RespositryLayer.Entity.UserTable", "UserTables")
                         .WithMany()
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("UserDetailTable");
+                    b.Navigation("NoteDetailTable");
+
+                    b.Navigation("UserTables");
+                });
+
+            modelBuilder.Entity("RespositryLayer.Entity.NoteTable", b =>
+                {
+                    b.HasOne("RespositryLayer.Entity.UserTable", "UserTables")
+                        .WithMany()
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UserTables");
                 });
 #pragma warning restore 612, 618
         }

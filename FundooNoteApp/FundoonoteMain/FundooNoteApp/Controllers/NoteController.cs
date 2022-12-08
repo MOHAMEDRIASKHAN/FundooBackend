@@ -173,6 +173,27 @@ namespace FundooNoteApp.Controllers
                 throw;
             }
         }
+        [HttpGet("DisplayArchieveNotes")]
+        public ActionResult DisplayArchieveNotes()
+        {
+            try
+            {
+                long userID = Convert.ToInt32(User.Claims.FirstOrDefault(a => a.Type == "UserID").Value);
+                IEnumerable<NoteTable> DisplayArchieveNote = this.noteBN.GetNote(userID);
+                if (DisplayArchieveNote != null)
+                {
+                    return this.Ok(new { success = true, message = "Display Notes is exist", Data = DisplayArchieveNote });
+                }
+                else
+                {
+                    return this.BadRequest(new { success = true, message = "Display Notes is not exist" });
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         [HttpPut]
         [Route("Trash")]
@@ -196,6 +217,50 @@ namespace FundooNoteApp.Controllers
                 throw;
             }
         }
+        [HttpGet("DisplayTrashNotes")]
+        public ActionResult DisplayTrashNotes()
+        {
+            try
+            {
+                long userID = Convert.ToInt32(User.Claims.FirstOrDefault(a => a.Type == "UserID").Value);
+                IEnumerable<NoteTable> DisplayTrashNote = this.noteBN.GetNote(userID);
+                if (DisplayTrashNote != null)
+                {
+                    return this.Ok(new { success = true, message = "Display Notes is exist", Data = DisplayTrashNote });
+                }
+                else
+                {
+                    return this.BadRequest(new { success = true, message = "Display Notes is not exist" });
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [HttpDelete]
+        [Route("DeleteForever")]
+        public ActionResult DeleteNotesForever(long noteID)
+        {
+            try
+            {
+                long userID = Convert.ToInt32(User.Claims.FirstOrDefault(a => a.Type == "UserID").Value);
+                var result = this.noteBN.DeleteNotesForever(noteID);
+                if (result != null)
+                {
+                    return this.Ok(new { success = true, message = "DeleteNotesForever successfully" });
+                }
+                else
+                {
+                    return this.BadRequest(new { success = false, message = "DeleteNotesForever Failed" });
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        
         [HttpPut]
         [Route("UploadImage")]
 
@@ -212,6 +277,30 @@ namespace FundooNoteApp.Controllers
                 else
                 {
                     return this.BadRequest(new { success = false, message = "UploadImage Failed" });
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        [Route("Reminder")]
+
+        public ActionResult Reminder(long noteID, DateTime Reminder)
+            {
+            try
+            {
+                long userID = Convert.ToInt32(User.Claims.FirstOrDefault(a => a.Type == "UserID").Value);
+                var result = this.noteBN.Reminder(noteID, Reminder);
+                if (result != null)
+                {
+                    return this.Ok(new { success = true, message = "Reminder will work", Data = result });
+                }
+                else
+                {
+                    return this.BadRequest(new { success = false, message = "Reminder will not work" });
                 }
             }
             catch (Exception)

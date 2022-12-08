@@ -2,6 +2,7 @@
 using BusinessLayer.Services;
 using CommonLayer;
 using CommonLayer.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
@@ -15,6 +16,7 @@ namespace FundooNoteApp.Controllers
     //controller
     [Route("api/[controller]")]
     [ApiController]
+
     public class UserController : ControllerBase
     {
         IUserBN userBN;
@@ -77,14 +79,14 @@ namespace FundooNoteApp.Controllers
                 throw ex;
             }
         }
-
+        [Authorize]
         [HttpPost]
         [Route("UpdatePassword")]
-        public ActionResult UpdatePassword(String email, PasswordValidation valid)
+        public ActionResult UpdatePassword( PasswordValidation valid)
         {
             try
             {
-                //var mail = User.FindFirst(ClaimTypes.Email).Value.ToString();
+                var email = User.FindFirst(ClaimTypes.Email).Value.ToString();
                 var result = userBN.UpdatePassword(email, valid );
                 if (result != false)
                 {

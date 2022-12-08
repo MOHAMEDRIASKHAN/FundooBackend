@@ -99,11 +99,44 @@ namespace BusinessLayer.Services
                 throw;
             }
         }
+        public IEnumerable<NoteTable> DisplayArchieveNotes(long UserId)
+        {
+            try
+            {
+                return noteRepo.DisplayArchieveNotes(UserId);
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+        }
         public bool Trash(long noteID)
         {
             try
             {
                 return noteRepo.Trash(noteID);
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+        }
+        public IEnumerable<NoteTable> DisplayTrashNotes(long usedId)
+        {
+            try
+            {
+                return noteRepo.DisplayTrashNotes(usedId);
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+        }
+        public bool DeleteNotesForever(long noteID)
+        {
+            try
+            {
+                return noteRepo.DeleteNotesForever(noteID);
             }
             catch(Exception)
             {
@@ -117,6 +150,17 @@ namespace BusinessLayer.Services
                 return noteRepo.Image(noteID, userId, img);
             }
             catch (Exception)
+            {
+                throw;
+            }
+        }
+        public NoteTable Reminder(long noteID, DateTime Reminder)
+        {
+            try
+            {
+                return noteRepo.Reminder(noteID, Reminder);
+            }
+            catch(Exception)
             {
                 throw;
             }

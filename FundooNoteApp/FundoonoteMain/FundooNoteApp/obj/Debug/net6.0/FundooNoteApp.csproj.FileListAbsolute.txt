@@ -82,6 +82,7 @@ C:\Users\moham\source\repos\FundooNoteApp\FundoonoteMain\FundooNoteApp\bin\Debug
 C:\Users\moham\source\repos\FundooNoteApp\FundoonoteMain\FundooNoteApp\bin\Debug\net6.0\FundooNoteApp.runtimeconfig.json
 C:\Users\moham\source\repos\FundooNoteApp\FundoonoteMain\FundooNoteApp\bin\Debug\net6.0\FundooNoteApp.dll
 C:\Users\moham\source\repos\FundooNoteApp\FundoonoteMain\FundooNoteApp\bin\Debug\net6.0\FundooNoteApp.pdb
+C:\Users\moham\source\repos\FundooNoteApp\FundoonoteMain\FundooNoteApp\bin\Debug\net6.0\CloudinaryDotNet.dll
 C:\Users\moham\source\repos\FundooNoteApp\FundoonoteMain\FundooNoteApp\bin\Debug\net6.0\Experimental.System.Messaging.dll
 C:\Users\moham\source\repos\FundooNoteApp\FundoonoteMain\FundooNoteApp\bin\Debug\net6.0\Humanizer.dll
 C:\Users\moham\source\repos\FundooNoteApp\FundoonoteMain\FundooNoteApp\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
@@ -101,6 +102,7 @@ C:\Users\moham\source\repos\FundooNoteApp\FundoonoteMain\FundooNoteApp\bin\Debug
 C:\Users\moham\source\repos\FundooNoteApp\FundoonoteMain\FundooNoteApp\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\moham\source\repos\FundooNoteApp\FundoonoteMain\FundooNoteApp\bin\Debug\net6.0\Microsoft.OpenApi.dll
 C:\Users\moham\source\repos\FundooNoteApp\FundoonoteMain\FundooNoteApp\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\moham\source\repos\FundooNoteApp\FundoonoteMain\FundooNoteApp\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\moham\source\repos\FundooNoteApp\FundoonoteMain\FundooNoteApp\bin\Debug\net6.0\NLog.dll
 C:\Users\moham\source\repos\FundooNoteApp\FundoonoteMain\FundooNoteApp\bin\Debug\net6.0\NLog.Extensions.Logging.dll
 C:\Users\moham\source\repos\FundooNoteApp\FundoonoteMain\FundooNoteApp\bin\Debug\net6.0\NLog.Web.AspNetCore.dll
@@ -152,5 +154,3 @@ C:\Users\moham\source\repos\FundooNoteApp\FundoonoteMain\FundooNoteApp\obj\Debug
 C:\Users\moham\source\repos\FundooNoteApp\FundoonoteMain\FundooNoteApp\obj\Debug\net6.0\FundooNoteApp.pdb
 C:\Users\moham\source\repos\FundooNoteApp\FundoonoteMain\FundooNoteApp\obj\Debug\net6.0\FundooNoteApp.genruntimeconfig.cache
 C:\Users\moham\source\repos\FundooNoteApp\FundoonoteMain\FundooNoteApp\obj\Debug\net6.0\ref\FundooNoteApp.dll
-C:\Users\moham\source\repos\FundooNoteApp\FundoonoteMain\FundooNoteApp\bin\Debug\net6.0\CloudinaryDotNet.dll
-C:\Users\moham\source\repos\FundooNoteApp\FundoonoteMain\FundooNoteApp\bin\Debug\net6.0\Newtonsoft.Json.dll
