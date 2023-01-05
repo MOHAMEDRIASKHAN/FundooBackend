@@ -12,6 +12,7 @@ namespace CommonLayer.Model
         public string LastName { get; set; }
         public string EmailID { get; set; }
         public string Password { get; set; }
+       
 
         //userpostmodel
     }

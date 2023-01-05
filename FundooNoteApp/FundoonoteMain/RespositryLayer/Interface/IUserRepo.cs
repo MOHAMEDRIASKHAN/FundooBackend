@@ -1,5 +1,4 @@
-﻿using CommonLayer;
-using CommonLayer.Model;
+﻿using CommonLayer.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +13,6 @@ namespace RespositryLayer.Interface
         public Entity.UserTable RegUser(UserPostModel userDetail);
         public string LoginUser(string email, string password);
         public string ForgetPassword(string email);
-        public bool UpdatePassword(string email, PasswordValidation valid);
+        public bool UpdatePassword(String email, string Password, string ConfirmPassword);
     }
 }

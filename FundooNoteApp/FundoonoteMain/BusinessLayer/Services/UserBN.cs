@@ -1,5 +1,4 @@
 ﻿using BusinessLayer.Interfaces;
-using CommonLayer;
 using CommonLayer.Model;
 using RespositryLayer.Entity;
 using RespositryLayer.Interface;
@@ -53,11 +52,11 @@ namespace BusinessLayer.Services
                 throw ex;
             }
         }
-        public bool UpdatePassword(string email, PasswordValidation valid)
+        public bool UpdatePassword(String email, string Password, string ConfirmPassword)
         {
             try
             {
-                return userRepo.UpdatePassword(email, valid);
+                return userRepo.UpdatePassword(email, Password,ConfirmPassword);
             }
             catch (Exception ex)
             {

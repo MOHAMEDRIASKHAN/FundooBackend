@@ -8,5 +8,6 @@ namespace RespositryLayer.Interface
         List<LabelTable> GetLabels(long noteID, long userID);
         bool RemoveLabel(long userID, long labelID);
         bool RenameLabel(long userID, string oldLabelName, string newLabelName);
+        public Task<List<LabelTable>> GetAllLableNotesByRadisCache();
     }
 }

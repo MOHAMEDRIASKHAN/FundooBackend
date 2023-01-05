@@ -1,4 +1,6 @@
 ﻿using BusinessLayer.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using RespositryLayer.Context;
 using RespositryLayer.Entity;
 using RespositryLayer.Interface;
 using System;
@@ -12,10 +14,12 @@ namespace BusinessLayer.Services
     public class CollabBN : ICollabBN
     {
         ICollabRepo collabRepo;
+        FundooDBContext FundooDBContext;
 
-        public CollabBN(ICollabRepo collabRepo)
+        public CollabBN(ICollabRepo collabRepo, FundooDBContext fundooDBContext)
         {
             this.collabRepo = collabRepo;
+            this.FundooDBContext = fundooDBContext;
         }
 
         public CollabTable CreateCollab(long noteID, long userID, string CollabEmailID)
@@ -45,6 +49,18 @@ namespace BusinessLayer.Services
             try
             {
                 return collabRepo.DeleteCollab(userID, collabID);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public async Task<List<CollabTable>> GetAllCollabNotesByRadisCache()   //BL
+        {
+            try
+            {
+                return await FundooDBContext.CollabDetailTables.ToListAsync();
+
             }
             catch (Exception)
             {

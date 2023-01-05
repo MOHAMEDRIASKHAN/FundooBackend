@@ -1,8 +1,11 @@
 ﻿using BusinessLayer.Interfaces;
 using CommonLayer.Model;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using RespositryLayer.Context;
 using RespositryLayer.Entity;
 using RespositryLayer.Interface;
+using RespositryLayer.Migrations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +17,11 @@ namespace BusinessLayer.Services
     public class NoteBN : INoteBN
     {
         INoteRepo1 noteRepo;
-        public NoteBN(INoteRepo1 noteRepo)
+        FundooDBContext fundooDBContext;
+        public NoteBN(INoteRepo1 noteRepo,FundooDBContext fundooDBContext)
         {
             this.noteRepo = noteRepo;
+            this.fundooDBContext = fundooDBContext;
         }
 
         public NoteTable CreateNotes(NotesModel notesModel, long UserID)
@@ -161,6 +166,17 @@ namespace BusinessLayer.Services
                 return noteRepo.Reminder(noteID, Reminder);
             }
             catch(Exception)
+            {
+                throw;
+            }
+        }
+        public async Task<List<NoteTable>> GetAllNotesByRadisCache()  //BL
+        {
+            try
+            {
+                return await fundooDBContext.NoteDetailTables.ToListAsync();
+            }
+            catch (Exception)
             {
                 throw;
             }

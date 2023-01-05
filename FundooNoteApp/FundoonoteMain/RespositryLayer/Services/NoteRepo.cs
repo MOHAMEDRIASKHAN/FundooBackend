@@ -2,10 +2,13 @@
 using CloudinaryDotNet.Actions;
 using CommonLayer.Model;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using RespositryLayer.Context;
 using RespositryLayer.Entity;
 using RespositryLayer.Interface;
+using RespositryLayer.Migrations;
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -140,7 +143,7 @@ namespace RespositryLayer.Services
             try
             {
                 NoteTable noteTable = this.fundooDBContext.NoteDetailTables.FirstOrDefault(x => x.NoteID == noteID);
-                if (noteTable.Color != null)
+                if (noteTable.Color == null)
                 {
                     noteTable.Color = color;
                     this.fundooDBContext.SaveChanges();
@@ -209,8 +212,8 @@ namespace RespositryLayer.Services
                 if (result != null)
                 {
                     
-                    this.fundooDBContext.SaveChanges();
-                    return null;
+                   // this.fundooDBContext.SaveChanges();
+                    return result;
                 }
                 return null;
             }
@@ -226,7 +229,6 @@ namespace RespositryLayer.Services
                 NoteTable result = this.fundooDBContext.NoteDetailTables.FirstOrDefault(x => x.NoteID == noteID);
                 if (result.Trash == true)
                 {
-
                     result.Trash = false;
                     this.fundooDBContext.SaveChanges();
                     return false;
@@ -335,6 +337,18 @@ namespace RespositryLayer.Services
 
                 }
                 return null;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public async Task<List<NoteTable>> GetAllNotesByRadisCache()   //RL
+        {
+            try
+            {
+                return await fundooDBContext.NoteDetailTables.ToListAsync();
+
             }
             catch (Exception)
             {

@@ -1,11 +1,13 @@
-﻿using CommonLayer;
-using CommonLayer.Model;
+﻿using CommonLayer.Model;
 using Experimental.System.Messaging;
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using RespositryLayer.Context;
 using RespositryLayer.Entity;
 using RespositryLayer.Interface;
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -24,10 +26,14 @@ namespace RespositryLayer.Services
     {
         FundooDBContext fundoo;
         private readonly IConfiguration configuration;
-        public UserRepo(FundooDBContext fundoo, IConfiguration configuration)
+        private readonly IMemoryCache memoryCache;
+        private readonly IDistributedCache distributedCache;
+        public UserRepo(FundooDBContext fundoo, IConfiguration configuration, IMemoryCache memoryCache, IDistributedCache distributedCache)
         {
             this.fundoo = fundoo;
             this.configuration = configuration;
+            this.memoryCache = memoryCache;
+            this.distributedCache = distributedCache;
         }
         public Entity.UserTable RegUser(UserPostModel userDetail)
         {
@@ -58,10 +64,18 @@ namespace RespositryLayer.Services
                 var result = fundoo.UserDetailTables.Where(u => u.EmailID == email && u.Password == password).FirstOrDefault();
                 if(result != null)
                 {
-                    
-                    return GetJWTToken(email, result.UserID);
+
+                    ConnectionMultiplexer connectionMultiplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
+                    IDatabase database = connectionMultiplexer.GetDatabase();
+                    database.StringSet(key: "FirstName", result.FirstName);
+                    database.StringSet(key: "LastName", result.LastName);
+                    database.StringSet(key: "UserID", result.UserID.ToString());
+                    //return "Login Successfully";
+                    var token = GetJWTToken(email, result.UserID);
+                    return token;
+
                 }
-                return null;
+                return "Login Failed";
                  //String password = password//
             }
             catch(Exception ex)
@@ -141,7 +155,7 @@ namespace RespositryLayer.Services
                 {
                     var Token =  GetJWTToken(CheckEmail.EmailID, CheckEmail.UserID);
                     MSMQModel msmqModel = new MSMQModel();
-                    msmqModel.sendDatatoQueue(Token);
+                    msmqModel.SendMessage(Token,CheckEmail.EmailID,CheckEmail.FirstName);
                     return Token.ToString();
                 }
                 else
@@ -156,14 +170,14 @@ namespace RespositryLayer.Services
             }
         }
       
-        public bool UpdatePassword(String email, PasswordValidation valid)
+        public bool UpdatePassword(String email, string Password, string ConfirmPassword)
         {
             try
             {
-                if(valid.Password.Equals(valid.ConfirmPassword))
+                if(Password.Equals(ConfirmPassword))
                 {
                     var user = fundoo.UserDetailTables.Where(x => x.EmailID == email).FirstOrDefault();
-                    user.Password = EncryptPassword(valid.ConfirmPassword);
+                    user.Password = EncryptPassword(ConfirmPassword);
                     fundoo.SaveChanges();
                     return true;
                 }

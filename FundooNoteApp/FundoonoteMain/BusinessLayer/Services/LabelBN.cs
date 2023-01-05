@@ -1,6 +1,9 @@
 ﻿using BusinessLayer.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using RespositryLayer.Context;
 using RespositryLayer.Entity;
 using RespositryLayer.Interface;
+using RespositryLayer.Migrations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +15,12 @@ namespace BusinessLayer.Services
     public class LabelBN : ILabelBN
     {
         ILabelRepo labelRepo;
+        FundooDBContext dBContext;
 
-        public LabelBN(ILabelRepo labelRepo)
+        public LabelBN(ILabelRepo labelRepo, FundooDBContext dBContext)
         {
             this.labelRepo = labelRepo;
+            this.dBContext = dBContext;
         }
 
         public LabelTable CreateLabel(long userID, long noteID, string label)
@@ -57,6 +62,18 @@ namespace BusinessLayer.Services
             try
             {
                 return labelRepo.RenameLabel(userID, oldLabelName, newLabelName);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public async Task<List<LabelTable>> GetAllLableNotesByRadisCache()
+        {
+            try
+            {
+                return await dBContext.LabelDetailTables.ToListAsync();
+
             }
             catch (Exception)
             {

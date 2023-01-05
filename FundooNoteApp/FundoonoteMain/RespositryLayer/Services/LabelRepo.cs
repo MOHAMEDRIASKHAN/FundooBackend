@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using RespositryLayer.Context;
 using RespositryLayer.Entity;
 using RespositryLayer.Interface;
@@ -88,6 +89,18 @@ namespace RespositryLayer.Services
                 {
                     return false;
                 }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public async Task<List<LabelTable>> GetAllLableNotesByRadisCache()   //RL
+        {
+            try
+            {
+                return await fundooDBContext.LabelDetailTables.ToListAsync();
+
             }
             catch (Exception)
             {

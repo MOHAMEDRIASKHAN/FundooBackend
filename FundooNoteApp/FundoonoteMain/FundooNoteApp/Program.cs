@@ -5,16 +5,37 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using NLog;
+using NLog.Web;
 using RespositryLayer.Context;
 using RespositryLayer.Interface;
 using RespositryLayer.Services;
 using System.Text;
 
-var builder = WebApplication.CreateBuilder(args);
 
+var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();  ///
+logger.Debug("init main function");
+var builder = WebApplication.CreateBuilder(args);
+//var logger = NLogBuilder.ConfigureNLog("").GetCurrentClassLogger();
+//logger.Debug("init main function");
+//CreateHostBuilder(args).Build().Run();
+//NLog.LogManager.Shutdown();
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+    name: "AllowOrigin",
+  builder => {
+      builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+  });
+});
+builder.Services.AddMemoryCache();
+builder.Services.AddStackExchangeRedisCache(option =>
+{
+    option.Configuration = "localhost: 6379";
+});
 builder.Services.AddDbContext<FundooDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("FundooDB")));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -70,6 +91,8 @@ builder.Services.AddAuthentication(x =>
         ValidateAudience = false
     };
 });
+builder.Logging.ClearProviders();
+builder.Host.UseNLog();
 
 var app = builder.Build();
 
@@ -80,10 +103,19 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}
+
 app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseCors("AllowOrigin");
 
 app.MapControllers();
 app.MapControllerRoute(
@@ -94,3 +126,4 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+NLog.LogManager.Shutdown();

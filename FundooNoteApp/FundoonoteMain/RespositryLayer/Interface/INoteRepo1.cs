@@ -19,5 +19,6 @@ namespace RespositryLayer.Interface
         public bool DeleteNotesForever(long noteID);
         public string Image(long userId, long noteID, IFormFile img);
         public NoteTable Reminder(long noteID, DateTime Reminder);
+        public  Task<List<NoteTable>> GetAllNotesByRadisCache();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CommonLayer.Model;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using RespositryLayer.Context;
 using RespositryLayer.Entity;
@@ -21,7 +22,7 @@ namespace RespositryLayer.Services
             this.configuration = configuration;
         }
 
-        public CollabTable CreateCollab(long noteID, long userID, string CollabEmailID)
+        public CollabTable CreateCollab(long userID, long noteID, string CollabEmailID)
         {
             try
             {
@@ -66,6 +67,18 @@ namespace RespositryLayer.Services
                     return true;
                 }
                 return false;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public async Task<List<CollabTable>> GetAllCollabNotesByRadisCache()   //RL
+        {
+            try
+            {
+                return await dbcontext.CollabDetailTables.ToListAsync();
+
             }
             catch (Exception)
             {
